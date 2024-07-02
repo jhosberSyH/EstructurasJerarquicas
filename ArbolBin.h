@@ -2,6 +2,7 @@
 #define ArbolBIn_h
 #include "NodoArbolBin.h"
 #include <list>
+#include <vector>
 using namespace std;
 template <class elemento>
 class ArbolBin{

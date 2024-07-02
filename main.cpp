@@ -3,11 +3,12 @@
 #include "ArbolN.cpp"
 using namespace std;
 int main(){
-	ArbolN<int> arbolito,superArbolito;
-	list<int> lis;
+	ArbolN<int> arbolito,superArbolito,arbolito2;
+	list<int> lis,camino;
 	list<int> lista2;
 	list<int> lista3;
 	list<ArbolN<int>> hijos;
+	int padre;
 	cout<<"Paso 1 Insertar elementos"<<endl;
 	arbolito.insertarPadreHijo(50,40);
 	arbolito.insertarPadreHijo(50,45);
@@ -20,6 +21,17 @@ int main(){
 	arbolito.insertarPadreHijo(10,2);
 	arbolito.insertarPadreHijo(10,1);
 	arbolito.insertarPadreHijo(10,0);
+	arbolito2.insertarPadreHijo(50,40);
+	arbolito2.insertarPadreHijo(50,5);
+	arbolito2.insertarPadreHijo(50,43);
+	arbolito2.insertarPadreHijo(40,30);
+	arbolito2.insertarPadreHijo(30,10);
+	arbolito2.insertarPadreHijo(10,5);
+	arbolito2.insertarPadreHijo(10,4);
+	arbolito2.insertarPadreHijo(10,3);
+	arbolito2.insertarPadreHijo(10,2);
+	arbolito2.insertarPadreHijo(10,1);
+	arbolito2.insertarPadreHijo(10,0);
 	superArbolito.insertarPadreHijo(150,100);
 	cout<<"Paso 2 preorden"<<endl;
 	lis = arbolito.preorden();
@@ -61,7 +73,23 @@ int main(){
 		lis.pop_front();
 	}
 		cout<<endl;
-	superArbolito.eliminarSubArbol(2);
-	superArbolito.imprimirArbol();
+	//superArbolito.eliminarSubArbol(2);
+	superArbolito.imprimir();
+	cout<<"Esta Balanceado :"<<superArbolito.estaBalanceado()<<endl;
+	lis = superArbolito.recorridoPorNiveles();
+	padre = superArbolito.encontrarPadreElemento(10);
+	cout<<"El Padre es: "<<padre<<endl;
+	camino = superArbolito.encontrarCamino(43,50);
+	while(camino.empty() != 1){
+		cout<<camino.front()<<" ";
+		camino.pop_front();
+	}
+		cout<<endl;
+		cout<<"Son insomorfos:"<<arbolito.sonIsomorfos(arbolito2)<<endl;
+		arbolito.imprimirArbol();
+		arbolito2.imprimirArbol();
+		cout<<"altura:"<<superArbolito.altura()<<endl;
+		cout<<"Hojas:"<<superArbolito.contarHojas()<<endl;
+		cout<<"Ancestro:"<<superArbolito.ancestroComunMasReciente(100,50)<<endl;
 	return 0;
 }
