@@ -1,6 +1,8 @@
 #ifndef NodoArbolBin_h
 #define NodoArbolBin_h
 #include <iostream>
+#include <list>
+#include <vector>
 using namespace std;
 template <class elemento>
 class NodoArbolBin{

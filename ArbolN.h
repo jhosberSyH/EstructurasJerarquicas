@@ -32,6 +32,7 @@ class ArbolN{
 		bool encontrarRuta(NodoArbolN<elemento> *nodo, elemento objetivo, vector<NodoArbolN<elemento>*> &ruta);
 		int contarHojas(NodoArbolN<elemento>* p);
 		NodoArbolN<elemento>* ancestroComunMasReciente(NodoArbolN<elemento>* nodo, elemento nodo1, elemento nodo2);
+		void diametro(NodoArbolN<elemento>* nodo, int &diametro,int &altura, vector<elemento> &camino);
 
 	public:
 		//****Metodos****//
@@ -64,6 +65,8 @@ class ArbolN{
 		void imprimirArbol();// lista testeada
 		int contarHojas();
 		elemento ancestroComunMasReciente(elemento elemento1, elemento elemento2); 
+		vector<elemento> diametro();
+
 
 
 

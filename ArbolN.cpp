@@ -712,3 +712,46 @@ elemento ArbolN<elemento>::ancestroComunMasReciente(elemento elemento1, elemento
 	}
 	return (result);
 }
+
+template <class elemento>
+void ArbolN<elemento>::diametro(NodoArbolN<elemento>* p, int& diametro,int &altura, vector<elemento>& camino) {
+    int alturaMax2 = 0, alturaHijo;
+	altura = 0;
+	vector<elemento> caminoMax1, caminoMax2;
+	NodoArbolN<elemento>* hijo;
+	if (p != NULL){
+		hijo = p->getHijoIzquierdo();
+		while (hijo != NULL) {
+			vector<elemento> caminoHijo;
+			this->diametro(hijo, diametro,alturaHijo,caminoHijo);
+			if (alturaHijo > altura) {
+				alturaMax2 = altura;
+				caminoMax2 = caminoMax1;
+				altura = alturaHijo;
+				caminoMax1 = caminoHijo;
+			} else if (alturaHijo > alturaMax2) {
+				alturaMax2 = alturaHijo;
+				caminoMax2 = caminoHijo;
+			}
+			hijo = hijo->getHermanoDerecho();
+		}
+
+		if (altura + alturaMax2 > diametro) {
+			diametro = altura + alturaMax2;
+			camino = caminoMax1;
+			camino.push_back(p->getInfo());
+			camino.insert(camino.end(), caminoMax2.rbegin(), caminoMax2.rend());
+		}
+
+		caminoMax1.push_back(p->getInfo());
+		altura++;
+	}
+}
+
+template <class elemento>
+vector<elemento> ArbolN<elemento>::diametro() {
+    int diametro = 0,altura = 0;
+    vector<elemento> camino;
+    this->diametro(this->raiz, diametro, altura, camino);
+    return (camino);
+}
